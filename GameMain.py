@@ -4,16 +4,16 @@ import random
 inventory = {}
 inventory_empty = "[Inventory Empty]"
 
-daysLeft = 5
-distance = 10000
+daysLeft = 5  # DAYS LEFT UNTIL EXTRACTION
+distance = 10000  # DISTANCE FROM EXTRACTION POINT
 
-usr_name = ""
+usr_name = ""   # Player Name
 
 password = ["-", "-", "-", "-", "-", "-"]
 password_answer = ["5", "7", "4", "2", "8", "6"]
 
 
-def intro():
+def intro():  # 1 ) Beginning of game
     print("[Incoming Message]")
     time.sleep(1)
     print("[Connection Established with Traveller 017]")
@@ -43,14 +43,14 @@ def intro():
     answers = ["1",  "2", "3"]
     answer = ""
 
-    while answer not in answers:
+    while answer not in answers:  # Checking whether or not the player has answered one of the options
         answer = input("Enter here:  ")
     else:
         setting()
     return
 
 
-def setting():
+def setting(): # 2) Setting of Game / current scenario
     answers = ["1", "2", "3"]
     answer = ""
 
@@ -65,7 +65,7 @@ while also being hunted by the other traveler team.''')
     print("I don't know how to help, im just an intern at Nasa.              [3]")
     print()
 
-    while answer not in answers:
+    while answer not in answers:  # Checking whether or not the player has answered one of the options
         answer = input("Enter here:  ")
     else:
         if answer == answers[0]:
@@ -111,9 +111,7 @@ but uhmm what do you think?''')
     return
 
 
-def main():
-    distance = 10000
-    daysLeft = 5
+def main():  # 3) Start of main game play
     answers = ["1", "2", "3", "Yes", "No",  "no", "NO"]
     answer1 = ""
     answer2 = ""
@@ -170,7 +168,7 @@ Figured since im going to talk to you for a while I might as well know who this 
     return
 
 
-def lake():
+def lake():  # 4 ) Frozen lake in-game decision events
     print("Yeah, I guess you're right. gotta save as much time as I can.")
     time.sleep(2)
     print("Ok, I will keep in touch.")
@@ -1577,7 +1575,7 @@ def cart():
                     mineshaft_exit()
 
 
-def random_event():
+def random_event():  # Trigger events called at random for the minecart sequence in game
     choices = (1, 2, 3)
     event_1 = random.choice(choices)
 
@@ -1622,7 +1620,7 @@ def random_event():
                 print("Oh my god I feel sick.")
                 time.sleep(2)
                 print()
-        choices = (x for x in choices if x != 1)
+        choices = (x for x in choices if x != 1)  # Remove played choice from choices, so player does not repeat events.
         return choices
 
     elif event_1 == 2:
@@ -1665,7 +1663,7 @@ with a bunch of creepy crawling creatures lurking.''')
                 print("Ohh one made it on the cart alive!")
                 time.sleep(2)
                 print("Ahhh! Die you creepy crawly!")
-                choices = (x for x in choices if x != 2)
+                choices = (x for x in choices if x != 2)  # Remove played choice from choices
                 return choices
 
             if answer2 == answers[1]:
@@ -1763,7 +1761,7 @@ with a bunch of creepy crawling creatures lurking.''')
                                 print("Wooo! That should do it! There is no way anything survives that!")
                                 time.sleep(2)
                                 print("Made it to the cart. Time to go!")
-                                choices = (x for x in choices if x != 2)
+                                choices = (x for x in choices if x != 2)  # Remove played choice from choices
                                 return choices
 
                             if answer4 == answers[1]:
@@ -1798,7 +1796,7 @@ with a bunch of creepy crawling creatures lurking.''')
                                 time.sleep(1)
                                 print("I got him! Sliced his neck right through and he's gone")
                                 time.sleep(2)
-                                choices = (x for x in choices if x != 2)
+                                choices = (x for x in choices if x != 2)  # Remove played choice from choices
                                 return choices
 
                     if answer3 == answers[1]:
@@ -1831,7 +1829,7 @@ with a bunch of creepy crawling creatures lurking.''')
                         time.sleep(2)
                         print(". . .")
                         time.sleep(1)
-                        choices = (x for x in choices if x != 2)
+                        choices = (x for x in choices if x != 2)  # Remove played choice from choices
                         return choices
 
     elif event_1 == 3:
@@ -1887,7 +1885,7 @@ with a bunch of creepy crawling creatures lurking.''')
                         time.sleep(2)
                         print("Woooo! worked like a charm! nice job!")
                         time.sleep(2)
-                        choices = (x for x in choices if x != 3)
+                        choices = (x for x in choices if x != 3)  # Remove played choice from choices
                         return choices
                     if answer3 == answers[1]:
                         print()
@@ -1902,7 +1900,7 @@ with a bunch of creepy crawling creatures lurking.''')
                         print(". . . ")
                         print()
                         time.sleep(1)
-                        choices = (x for x in choices if x != 3)
+                        choices = (x for x in choices if x != 3)  # Remove played choice from choices
                         return choices
 
             if answer2 == answers[1]:
@@ -1944,7 +1942,7 @@ with a bunch of creepy crawling creatures lurking.''')
                         time.sleep(2)
                         print("Woooo! worked like a charm! nice job!")
                         time.sleep(2)
-                        choices = (x for x in choices if x != 3)
+                        choices = (x for x in choices if x != 3)  # Remove played choice from choices
                         return choices
                     if answer3 == answers[1]:
                         print()
@@ -1959,7 +1957,7 @@ with a bunch of creepy crawling creatures lurking.''')
                         print(". . . ")
                         print()
                         time.sleep(1)
-                        choices = (x for x in choices if x != 3)
+                        choices = (x for x in choices if x != 3)  # Remove played choice from choices
                         return choices
 
 
@@ -2016,7 +2014,7 @@ def spaceship():
             print()
             time.sleep(2)
 
-            if "Key card" in inventory:
+            if "Key card" in inventory:  # Checks if player has already pickup up the key card to proceed
                 print("Im glad I picked this up from the traveller outside.")
                 time.sleep(2)
                 print()
@@ -2177,8 +2175,8 @@ give me enough time for a disguise in order to escape when I get to the facility
                         time.sleep(1)
                         print("Yes! we got the key card, and I found a ray gun as well.")
                         time.sleep(3)
-                        inventory["Key card"] = '1'
-                        inventory["Ray Gun"] = '3'
+                        inventory["Key card"] = '1'  # Updating Inventory
+                        inventory["Ray Gun"] = '3'   # Updating Inventory
                         print()
                         print(inventory)
                         print()
@@ -2307,7 +2305,7 @@ and wait to land safely.''')
                         spaceship()
 
 
-def mineshaft_exit():
+def mineshaft_exit():  # Exit function from the mineshaft location in game.
     print(usr_name, usr_name, "Hey, are you there? I have good news I think.")
     time.sleep(3)
     print("I fell asleep on the cart but it seems like we made it to the end!")
@@ -2335,7 +2333,7 @@ def mineshaft_exit():
 
     time.sleep(1.5)
     answer = ""
-    while answer != password_answer:
+    while answer != password_answer:  # Checking whether passsword typed by player is correct password
         print()
         print(password)
         print()
@@ -2353,7 +2351,7 @@ def mineshaft_exit():
             facility()
 
 
-def facility():
+def facility():  # One of three final endings for the player.
     print()
     time.sleep(2)
     print("I, I made it!")
@@ -2372,7 +2370,7 @@ def facility():
     print("[REACHED ENDING 'C']")
 
 
-def ending_1():
+def ending_1():  # Two of three possible endings for the player.
     print()
     print("No! No more waiting around, or quitting, or hiding!")
     print('''There are enough explosives to blow up this spaceship 
@@ -2506,7 +2504,7 @@ def ending_1():
             return
 
 
-def death(reason):
+def death(reason):  # death function that explains the type of death.
     print()
     print("[Connection Signal Lost]")
     time.sleep(1)
@@ -2519,4 +2517,4 @@ def death(reason):
     print()
 
 
-spaceship()
+intro()  # Game Begins and runs from intro

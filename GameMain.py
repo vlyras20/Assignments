@@ -1,14 +1,16 @@
 import time
 import random
 
-gameOver = False
 inventory = {}
 inventory_empty = "[Inventory Empty]"
+
 daysLeft = 5
 distance = 10000
-sanity = 100
-contacts = {""}
+
 usr_name = ""
+
+password = ["-", "-", "-", "-", "-", "-"]
+password_answer = ["5", "7", "4", "2", "8", "6"]
 
 
 def intro():
@@ -114,6 +116,7 @@ def main():
     daysLeft = 5
     answers = ["1", "2", "3", "Yes", "No",  "no", "NO"]
     answer1 = ""
+    answer2 = ""
 
     while answer1 not in answers:
         print()
@@ -140,8 +143,10 @@ However, I think see a small island close to the middle of it.''')
             print('''The sides look pretty clear. Wait, what. I think I see a cabin maybe,
 just by the lake following the outskirt ''')
             time.sleep(1)
+            print()
             print('''It would slow me a bit but it sounds good to me, I'll stay the night there and tomorrow we move early,"
 what do you think?  [Yes]/[No]''')
+            print()
             time.sleep(3)
             answer2 = input("Enter here:  ")
             if answer2 in ["Yes", "yes", "YES"]:
@@ -192,11 +197,8 @@ def lake():
     time.sleep(3)
 
     print()
-    global sanity
-    sanity -= 20
     print('''            [DISTANCE] = 9000
-            [DAYS UNTIL EXTRACTION] = 5
-            [SANITY] = 80''')
+            [DAYS UNTIL EXTRACTION] = 5''')
     print()
     time.sleep(3)
 
@@ -241,7 +243,7 @@ I might as well risk it and sleep in the forest if I wanna get out of here''')
             time.sleep(1)
             print("Almost there come on! Nooo- I- f- it's so, -cold")
             time.sleep(2)
-            death()
+            death("DEATH -> FROZEN BY LAKE")
             lake()
 
         if answer == answers[1]:
@@ -296,14 +298,13 @@ def outskirts():
             print("     --->Run for it when you find a chance!         [2]")
             print()
 
-            answers2 = ["1", "2"]
             answer2 = ""
 
-            while answer2 not in answers2:
+            while answer2 not in answers:
                 answer2 = input("Enter here:  ")
                 print()
             else:
-                if answer2 == answers2[0]:
+                if answer2 == answers[0]:
                     print("Well I hope you're right. I'll keep you updated.")
                     time.sleep(1)
                     print('''Just to let you know, this is terrifying. I'm currently crawling through a meter of snow
@@ -330,14 +331,14 @@ def outskirts():
 
                     answer3 = ""
 
-                    while answer3 not in answers2:
+                    while answer3 not in answers:
                         answer3 = input("Enter here:  ")
                         print()
                     else:
-                        if answer3 == answers2[0]:
+                        if answer3 == answers[0]:
                             print()
                             cabin_calm()
-                        elif answer2 == answers2[1]:
+                        if answer3 == answers[1]:
                             print("Ok still crawling then. Im close.")
                             time.sleep(1)
                             print("Oh no! I got to run! Quick!")
@@ -351,23 +352,23 @@ def outskirts():
                             time.sleep(2)
                             print()
                             cabin_hurt()
-                elif answer2 == answers2[1]:
+                elif answer2 == answers[1]:
                     print("Really? I mean, it kinda makes sense I guess. Ok, I will keep you updated.")
-                    time.sleep(2)
+                    time.sleep(4)
                     print("Ok. they've spread out enough! This is my chance and I'm going for it!")
-                    time.sleep(2)
+                    time.sleep(4)
                     print("RUUUUUUUN!")
                     time.sleep(1)
                     print("Almost at the cabin!")
-                    time.sleep(1)
-                    print("Oh no! I see one looking at me! Im just running it! Go Go Go!")
                     time.sleep(2)
+                    print("Oh no! I see one looking at me! Im just running it! Go Go Go!")
+                    time.sleep(3)
                     print("Made it to the door! ")
-                    time.sleep(1)
+                    time.sleep(2)
                     print('''Phewww! Made it! that was close and I think they're circling the cabin outside
 so Im trapped here for a while.''')
-                    time.sleep(3)
-                    cabin_surrounded()
+                    time.sleep(5)
+                    cabin_calm()
         elif answer == answers[1]:
             print('''Nothing but the frozen lake. I think my best chances are
 dealing with these creatures fast and not waste time finding another way''')
@@ -388,14 +389,13 @@ dealing with these creatures fast and not waste time finding another way''')
             print("---> Run for it when you find a chance!         [2]")
             print()
 
-            answers2 = ["1", "2"]
             answer2 = ""
 
-            while answer2 not in answers2:
+            while answer2 not in answers:
                 answer2 = input("Enter here:  ")
                 print()
             else:
-                if answer2 == answers2[0]:
+                if answer2 == answers[0]:
                     print("Well I hope you're right. I'll keep you updated.")
                     time.sleep(1)
                     print('''Just to let you know, this is terrifying. I'm currently crawling through a meter of snow
@@ -422,14 +422,14 @@ what do you think''')
 
                     answer3 = ""
 
-                    while answer3 not in answers2:
+                    while answer3 not in answers:
                         answer3 = input("Enter here:  ")
                         print()
                     else:
-                        if answer3 == answers2[0]:
+                        if answer3 == answers[0]:
                             print()
                             cabin_calm()
-                        elif answer3 == answers2[1]:
+                        if answer3 == answers[1]:
                             print("Ok still crawling then. Im close.")
                             time.sleep(1)
                             print("Oh no! I got to run! Quick!")
@@ -443,23 +443,18 @@ and saw me right before I opened the door''')
                             time.sleep(2)
                             print()
                             cabin_hurt()
-                elif answer2 == answers2[1]:
+                elif answer2 == answers[1]:
                     print("Really? I mean, it kinda makes sense I guess. Ok, I will keep you updated.")
-                    time.sleep(2)
+                    time.sleep(3.5)
                     print("Ok. they've spread out enough! This is my chance and I'm going for it!")
-                    time.sleep(2)
+                    time.sleep(3.5)
                     print("RUUUUUUUN!")
-                    time.sleep(1)
+                    time.sleep(1.5)
                     print("Almost at the cabin!")
-                    time.sleep(1)
-                    print("Oh no! I see one looking at me! Im just running it! Go Go Go!")
                     time.sleep(2)
-                    print("Made it to the door! ")
-                    time.sleep(1)
-                    print('''Phewww! Made it! that was close and I think they're circling the cabin outside
-so Im trapped here for a while.''')
-                    time.sleep(3)
-                    cabin_surrounded()
+                    print("Oh no! I see one looking at me! Im just running it! Go Go Go!")
+                    time.sleep(3.5)
+                    cabin_calm()
 
 
 def cabin_calm():
@@ -483,9 +478,9 @@ def cabin_calm():
     print('''Phewww! Made it! Easy, Ok.''')
     time.sleep(2)
     print("I think the creatures haven't noticed me so I should be able to stay here until they leave.")
-    time.sleep(3)
+    time.sleep(4)
     print("I, I see nothing. It's pitch black. Let me see what I have on me.")
-    time.sleep(2)
+    time.sleep(3)
     print()
     global inventory_empty
     print(inventory_empty)
@@ -514,8 +509,7 @@ until morning comes I guess so I can see whats around. Sound Good?''')
             time.sleep(2)
             print()
             print('''            [DISTANCE] = 9.080m
-            [DAYS UNTIL EXTRACTION] = 4
-            [SANITY] = 79''')
+            [DAYS UNTIL EXTRACTION] = 4''')
 
             time.sleep(2)
             print()
@@ -523,17 +517,15 @@ until morning comes I guess so I can see whats around. Sound Good?''')
             time.sleep(1)
             print('''Im glad I slept in here however, 
 I don't know if I would have made it camping at the forest in this cold.''')
-            time.sleep(3)
+            time.sleep(4)
             print("Better start searching around, see what I can find in this place.")
-            time.sleep(2)
-            print("I see a lot of cupboards but no supplies. Thats not a good sign.")
-            time.sleep(2)
-            print("Should I start moving to the forest maybe? I feel like I am waisting time here.")
-            time.sleep(2)
+            time.sleep(3)
+            print("I see a lot of cupboards but no supplies. That's not a good sign.")
+            time.sleep(3)
             print("Oh, oh my, what is that smell?")
             time.sleep(2)
             print("Wooow! There's a corpse in the closet. Someone has been here recently.")
-            time.sleep(2)
+            time.sleep(3)
 
             print()
             print("Leave it! keep searching the room.      [1]")
@@ -632,8 +624,12 @@ The mineshaft might take me completely out of my way.''')
                                     time.sleep(1)
                                     print()
                                     print('''Yeah? I guess you're right. 
-                            The mineshaft might take me completely out of my way.''')
+The mineshaft might take me completely out of my way.''')
                                     forest()
+                        if answer3 == answers[1]:
+                            print("You're right! I should just focus on getting back!")
+                            time.sleep(3)
+                            forest()
                 if answer2 == answers[1]:
                     print("--> Search the body for supplies")
                     time.sleep(1)
@@ -699,251 +695,7 @@ The mineshaft might take me completely out of my way.''')
                             time.sleep(1)
                             print()
                             print('''I like your thinking! If it indeed leads to the facility,
-                            this might change everything''')
-                            time.sleep(3)
-                            print("Well, I uh, I think I found it.")
-                            time.sleep(2)
-                            print("I found a trapdoor.")
-                            time.sleep(1)
-                            print("It's sealed, and I don't see any password input here.")
-                            time.sleep(2)
-                            mineshaft()
-                        if answer4 == answers1[2]:
-                            print("--> Don't waste time and start heading towards the forest")
-                            time.sleep(1)
-                            print()
-                            print('''Yeah? I guess you're right. 
-The mineshaft might take me completely out of my way.''')
-                            forest()
-
-
-def cabin_surrounded():
-    global distance
-    distance -= 920
-
-    answer1 = ""
-    answers1 = ["1", "2", "3"]
-
-    answers = ["1", "2"]
-    answer2 = ""
-    answer3 = ""
-    answer4 = ""
-    answer5 = ""
-
-    print("I, I see nothing. It's pitch black. Let me see what I have on me somehow.")
-    time.sleep(2)
-    print()
-    print(inventory_empty)
-    print()
-    print('''Well I got nothing. I could just sleep in this corner
-until morning comes so I can see whats around. Sound Good?''')
-    time.sleep(4)
-    print("Sounds good.      [1]")
-
-    while answer1 not in ["1"]:
-        print()
-        answer1 = input("Enter here:  ")
-        print()
-    else:
-        if answer1 == "1":
-            print("--> Sounds good.")
-            time.sleep(1)
-            print()
-            print(".")
-            time.sleep(2)
-            print()
-            print(".")
-            time.sleep(2)
-            print()
-            print(".")
-            time.sleep(2)
-            print()
-            print('''            [DISTANCE] = 9.080m
-            [DAYS UNTIL EXTRACTION] = 4
-            [SANITY] = 79''')
-            time.sleep(2)
-            print()
-            print(usr_name, "...", usr_name, "Oh man it's freezing!")
-            time.sleep(1)
-            print('''Im glad I slept in here however, 
-I don't know if I would have made it camping at the forest in this cold.''')
-            time.sleep(3)
-            print("Seems like the creatures have left, I don't hear anything outside.")
-            time.sleep(2)
-            print("Better start searching around quick, see what I can find in this place to help and start moving.")
-            time.sleep(2)
-            print("I see a lot of cupboards but no supplies. That's not a good sign.")
-            time.sleep(2)
-            print("Oh, oh my, what is that smell?")
-            time.sleep(2)
-            print("Wooow! There's a corpse in the closet. Someone has been here recently.")
-            time.sleep(2)
-
-            print()
-            print("Leave it! keep searching the room.      [1]")
-            print("Search the body for supplies.           [2]")
-
-            while answer2 not in answers:
-                print()
-                answer2 = input("Enter here:  ")
-                print()
-            else:
-                if answer2 == answers[0]:
-                    print("--> Leave it! keep searching the room.")
-                    time.sleep(2)
-                    print("Yeah, better not deal with this thing. I'll keep looking around.")
-                    time.sleep(2)
-                    print("I see books but nothing useful to take with me.")
-                    time.sleep(2)
-                    print("OHh! umm! I found a trapdoor.")
-                    time.sleep(1)
-                    print("It's sealed, I can't seem to break it open.")
-                    time.sleep(2)
-                    print("There must be a way to open it right?")
-                    time.sleep(2)
-
-                    print()
-                    print("Search the body.                                      [1]")
-                    print("Don't waste time and start heading towards the forest [2]")
-                    print()
-
-                    while answer3 not in answers:
-                        print()
-                        answer3 = input("Enter here:  ")
-                        print()
-                    else:
-                        if answer3 == answers[0]:
-                            print("--> Search the body.")
-                            time.sleep(1)
-                            print()
-                            print("I was so sure you where going to say that. I guess it's worth a try then")
-                            time.sleep(2)
-                            print("I've got something.")
-                            time.sleep(1)
-                            print('''It's just some writing on a piece of paper. Something about a mineshaft underneath the cabin.
-Could be interesting to investigate, but we still have 4 days left, so if I go searching I should do it fast.
-There's also a few numbers written. 5 7 4 - 2 8 6
-Any idea what they could mean? ''')
-                            time.sleep(6)
-
-                            print()
-                            print("A password for the trapdoor maybe?                        [1]")
-                            print("Leave it! You have a long way to go until the extraction. [2]")
-                            print()
-
-                            while answer4 not in answers:
-                                print()
-                                answer4 = input("Enter here:  ")
-                                print()
-                            else:
-                                if answer4 == answers[0]:
-                                    print("--> A password for the trapdoor maybe?")
-                                    time.sleep(1)
-                                    print()
-                                    print("Why would a mineshaft require a password? Where would it lead?")
-                                    time.sleep(2)
-                                    print('''If it somehow leads me closer to my extraction, it could save me a lot of time though,
-maybe even days worth of walking.''')
-                                    time.sleep(3)
-                                    print()
-                                    print("Open the trapdoor.                       [1]")
-                                    print("Ignore it! Leave for the forest now.     [2]")
-                                    print()
-                                    while answer5 not in answers:
-                                        print()
-                                        answer5 = input("Enter here:  ")
-                                        print()
-                                    else:
-                                        if answer5 == answers[0]:
-                                            print("--> Open the trapdoor. ")
-                                            print()
-                                            time.sleep(1)
-                                            print('''I like your thinking! If it indeed leads to the facility,
- this might change everything''')
-                                            time.sleep(2)
-                                            mineshaft()
-                                        if answer5 == answers[1]:
-                                            print("--> Ignore it! Leave for the forest now.")
-                                            print()
-                                            time.sleep(2)
-                                            print('''Yeah? I guess you're right. 
-The mineshaft might take me completely out of my way.''')
-                                            time.sleep(3)
-                                            forest()
-
-                                if answer4 == answers[1]:
-                                    print("--> Leave it! You have a long way to go until the extraction.")
-                                    time.sleep(1)
-                                    print()
-                                    print('''Yeah? I guess you're right. 
-                            The mineshaft might take me completely out of my way.''')
-                                    forest()
-                if answer3 == answers[1]:
-                    print("--> Search the body.")
-                    time.sleep(1)
-                    print()
-                    print("I was so sure you where going to say that. I guess it's worth a try then")
-                    time.sleep(2)
-                    print("I've got something.")
-                    time.sleep(1)
-                    print('''It's just some writing on a piece of paper. Something about a mineshaft underneath the cabin.
-Could be interesting to investigate, but we still have 4 days left, so if I go searching I should do it fast.
-There's also a few numbers written. 5 7 4 - 2 8 6
-Any idea what they could mean? ''')
-                    time.sleep(6)
-
-                    print()
-                    print("A password maybe?                                     [1]")
-                    print("Find the entrance to the shaft.                       [2]")
-                    print("Don't waste time and start heading towards the forest [3]")
-                    print()
-
-                    while answer4 not in answers1:
-                        print()
-                        answer4 = input("Enter here:  ")
-                        print()
-                    else:
-                        if answer4 == answers1[0]:
-                            print("--> A password maybe?")
-                            time.sleep(1)
-                            print()
-                            print("Why would a mineshaft require a password? Where would it lead?")
-                            time.sleep(2)
-                            print('''If it somehow leads me closer to my extraction, it could save me a lot of time,
-maybe even days worth of walking.''')
-                            time.sleep(3)
-                            print()
-                            print("Find the entrance to the shaft.                       [1]")
-                            print("Leave it, just start heading towards the forest       [2]")
-                            print()
-                            while answer5 not in answers:
-                                print()
-                                answer5 = input("Enter here:  ")
-                                print()
-                            else:
-                                if answer5 == answers[0]:
-                                    print()
-                                    print('''I like your thinking! If it indeed leads to the facility,
 this might change everything''')
-                                    time.sleep(2)
-                                    print("Well, I uh, I think I found it.")
-                                    time.sleep(2)
-                                    print("I found the trapdoor.")
-                                    time.sleep(1)
-                                    print("It's sealed, and I don't see any password input here.")
-                                    time.sleep(2)
-                                    mineshaft()
-                                if answer5 == answers[1]:
-                                    print('''Yeah? I guess you're right. 
-The mineshaft might take me completely out of my way.''')
-                                    forest()
-
-                        if answer4 == answers1[1]:
-                            print("--> Find the entrance to the shaft.")
-                            time.sleep(1)
-                            print()
-                            print('''I like your thinking! If it indeed leads to the facility,
-                            this might change everything''')
                             time.sleep(3)
                             print("Well, I uh, I think I found it.")
                             time.sleep(2)
@@ -965,6 +717,7 @@ def cabin_hurt():
     global distance
     distance -= 920
 
+    answer = ""
     answer1 = ""
     answers1 = ["1", "2", "3"]
 
@@ -973,6 +726,7 @@ def cabin_hurt():
     answer3 = ""
     answer4 = ""
     answer5 = ""
+    answer6 = ""
 
     print("Blue bear bites are not poisonous right? ")
     print()
@@ -992,9 +746,10 @@ def cabin_hurt():
 
         elif answer1 == answers[1]:
             print("Wait. What? Don't freak me out", usr_name, "You serious?")
+            print()
             time.sleep(2)
-            print("No, calm down commando, I was joking, you'll be alright.     [1]")
-            print("Well lets say fever is the last thing you should worry about.[2]")
+            print("--> No, calm down commando, I was joking, you'll be alright.     [1]")
+            print("--> Well lets say fever is the last thing you should worry about.[2]")
             while answer2 not in answers:
                 print()
                 answer2 = input("Enter here:  ")
@@ -1005,26 +760,27 @@ def cabin_hurt():
                 if answer2 == answers[1]:
                     print("-> Well lets say fever is the last thing you should worry about.")
                     time.sleep(2)
-                    print("-> Im joking by the way Mr. Traveler. I don't know if they have humour whenever you're from ")
+                    print("-> Im joking by the way Mr. Traveler. I don't know if they have humour whenever you're from")
                     time.sleep(1)
                     print("Funny", usr_name, "Very funny indeed.")
     time.sleep(2)
     print("Well you know what. Ahh! I, I see nothing. It's pitch black and I'm exhausted.")
     time.sleep(2)
     print()
-    print(inventory)
+    print(inventory_empty)
     print()
     print('''Hopefully my wound doesn't get infected throughout night time. I could just sleep and rest in this corner
 until morning comes so I can see whats around and move from there. Sound Good?''')
     time.sleep(5)
+    print()
     print("Sounds good.      [1]")
 
-    while answer1 not in ["1"]:
+    while answer not in ["1"]:
         print()
-        answer1 = input("Enter here:  ")
+        answer = input("Enter here:  ")
         print()
     else:
-        if answer1 == answers[0]:
+        if answer == answers[0]:
             print("--> Sounds good.")
             time.sleep(1)
             print()
@@ -1038,8 +794,7 @@ until morning comes so I can see whats around and move from there. Sound Good?''
             time.sleep(2)
             print()
             print('''            [DISTANCE] = 9.080m
-            [DAYS UNTIL EXTRACTION] = 4
-            [SANITY] = 67''')
+            [DAYS UNTIL EXTRACTION] = 4''')
             time.sleep(2)
 
             print()
@@ -1065,12 +820,12 @@ I don't know if I would have made it camping at the forest in this cold.''')
             print("Leave it! keep searching the room.      [1]")
             print("Search the body for supplies.           [2]")
 
-            while answer2 not in answers:
+            while answer6 not in answers:
                 print()
-                answer2 = input("Enter here:  ")
+                answer6 = input("Enter here:  ")
                 print()
             else:
-                if answer2 == answers[0]:
+                if answer6 == answers[0]:
                     print("--> Leave it! keep searching the room.")
                     time.sleep(2)
                     print("Yeah, better not deal with this thing. I'll keep looking around.")
@@ -1143,7 +898,7 @@ maybe even days worth of walking.''')
                                             print('''I like your thinking! If it indeed leads to the facility,
  this might change everything''')
                                             time.sleep(2)
-                                            mineshaft_hurt()
+                                            mineshaft()
                                         if answer5 == answers[1]:
                                             print("--> Ignore it! Leave for the forest now.")
                                             print()
@@ -1151,7 +906,7 @@ maybe even days worth of walking.''')
                                             print('''Yeah? I guess you're right. 
 The mineshaft might take me completely out of my way.''')
                                             time.sleep(3)
-                                            forest_hurt()
+                                            forest()
 
                                 if answer4 == answers[1]:
                                     print("--> Leave it! You have a long way to go until the extraction.")
@@ -1159,7 +914,11 @@ The mineshaft might take me completely out of my way.''')
                                     print()
                                     print('''Yeah? I guess you're right. 
 The mineshaft might take me completely out of my way.''')
-                                    forest_hurt()
+                                    forest()
+                        if answer3 == answers[1]:
+                            print("You're right! I should just focus on getting back!")
+                            time.sleep(3)
+                            forest()
                 if answer2 == answers[1]:
                     print("--> Search the body for supplies")
                     time.sleep(1)
@@ -1214,11 +973,11 @@ this might change everything''')
                                     time.sleep(1)
                                     print("It's sealed, and I don't see any password input here.")
                                     time.sleep(2)
-                                    mineshaft_hurt()
+                                    mineshaft()
                                 if answer5 == answers[1]:
                                     print('''Yeah? I guess you're right. 
 The mineshaft might take me completely out of my way.''')
-                                    forest_hurt()
+                                    forest()
 
                         if answer4 == answers1[1]:
                             print("--> Find the entrance to the shaft.")
@@ -1233,23 +992,254 @@ The mineshaft might take me completely out of my way.''')
                             time.sleep(1)
                             print("It's sealed, and I don't see any password input here.")
                             time.sleep(2)
-                            mineshaft_hurt()
+                            mineshaft()
                         if answer4 == answers1[2]:
                             print("--> Leave it, just start heading towards the forest")
                             time.sleep(1)
                             print()
                             print('''Yeah? I guess you're right. 
 The mineshaft might take me completely out of my way.''')
-                            forest_hurt()
+                            forest()
 
 
 def forest():
     print("Ok time to leave the cabin then!")
     time.sleep(2)
-
-
-def forest_hurt():
+    print("The decision has been made!")
+    time.sleep(2)
+    print("I will keep you updated ")
+    time.sleep(2)
     print()
+    print(". . .")
+    print()
+    time.sleep(1)
+    print()
+    print(". . .")
+    print()
+    time.sleep(1)
+    print(usr_name, "Hey Hey! I see movement in the forest!")
+    time.sleep(2)
+    print("Looks like regular people. They must be the other travellers most likely.")
+    time.sleep(3)
+    print("I can't let them spot me.")
+    time.sleep(2)
+    print()
+    print("Follow them               [1]")
+    print("Take them out one by one. [2]")
+    print()
+    time.sleep(1)
+
+    answer = ""
+    answers = ["1", "2"]
+
+    while answer not in answers:
+        answer = input("Enter here:  ")
+        print()
+    else:
+        if answer == answers[0]:
+            print("--> Follow them.")
+            time.sleep(1)
+            print("I could do that actually, good idea", usr_name)
+            time.sleep(2)
+            print("In fact they could lead me straight to the facility")
+            time.sleep(2)
+            print("Or even my team if they're still alive.")
+            time.sleep(2)
+            print("Ok, I will keep following them and keep you updated partner.")
+            time.sleep(2)
+            print()
+            print(". . .")
+            print()
+            time.sleep(1)
+            print()
+            print(". . .")
+            print()
+            time.sleep(1)
+            print("Whoa! hey,", usr_name, "umm, so I see them loading cargo boxes on their spaceship.")
+            time.sleep(2)
+            print("That must be my way to the facility!")
+            time.sleep(2)
+            print("I have to free my team and get out of this place!")
+            time.sleep(2)
+            print("But first, I need a way onto that spaceship.")
+            time.sleep(2)
+            print("Any ideas?")
+            time.sleep(1)
+
+            print()
+            print("Kill all of them and hijack the spaceship?  [1]")
+            print("Hide in the boxes and sneak in.             [2]")
+            print()
+            time.sleep(2)
+
+            answer1 = ""
+            while answer1 not in answers:
+                answer1 = input("Enter here:  ")
+                print()
+            else:
+                if answer1 == answers[0]:
+                    print("--> Kill all of them and hijack the spaceship?")
+                    time.sleep(1)
+                    print("I would love to do that but I can't drive a spaceship.")
+                    time.sleep(2)
+                    print("Wait a minute")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print("Okay umm! I'm inside a cargo box.")
+                    time.sleep(2)
+                    print("But it's full of explosives!")
+                    time.sleep(2)
+                    print("As long as I don't blow up I should be good.")
+                    time.sleep(3)
+                    print("All I need now is to be placed in the spaceship")
+                    time.sleep(3)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print("Im in! It worked. I had to stay quiet there, I couldn't compromise myself.")
+                    time.sleep(3)
+                    print("Now I just have to wait or take off and I break out of here.")
+                    time.sleep(3)
+                    spaceship()
+                if answer1 == answers[1]:
+                    print("--> Hide in the boxes and sneak in.")
+                    time.sleep(2)
+                    print()
+                    print("Smart, I'll see what I can do.")
+                    time.sleep(2)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print("Okay umm! I'm inside a cargo box.")
+                    time.sleep(2)
+                    print("But it's full of explosives!")
+                    time.sleep(2)
+                    print("As long as I don't blow up I should be good.")
+                    time.sleep(3)
+                    print("All I need now is to be placed in the spaceship")
+                    time.sleep(3)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print("Im in! It worked. I had to stay quiet there, I couldn't compromise myself.")
+                    time.sleep(3)
+                    print("Now I just have to wait for take off and I break out of here.")
+                    time.sleep(3)
+                    spaceship()
+        if answer == answers[1]:
+            print("--> Take them out one by one.")
+            time.sleep(1)
+            print("I see at least 5, and my only weapon is a shiv!")
+            time.sleep(2)
+            print("I don't like my chances but I will try and make this work.")
+            time.sleep(2)
+            print("One of them is alone. I could go for the kill but if he hears me or alerts his team, its over.")
+            time.sleep(3)
+            print("What do you think?")
+            time.sleep(1)
+
+            print()
+            print("Take him out!             [1]")
+            print("Find a different approach [2]")
+            print()
+            time.sleep(2)
+
+            answer1 = ""
+
+            while answer1 not in answers:
+                answer1 = input("Enter here:  ")
+                print()
+            else:
+                if answer1 == answers[0]:
+                    print("--> Take him out!")
+                    print()
+                    time.sleep(1)
+                    print(". .")
+                    time.sleep(1)
+                    print(". .")
+                    time.sleep(1)
+                    print(". .")
+                    time.sleep(2)
+                    print("Ok, ok, ok, it's done! First one down!")
+                    time.sleep(2)
+                    print("I found a key card and a ray gun on him with 3 shots.")
+                    time.sleep(2)
+                    global inventory
+                    inventory["Key card"] = '1'
+                    inventory["Ray Gun"] = '3'
+                    print()
+                    print(inventory)
+                    print()
+                    time.sleep(2)
+                    print("Okay, I see another possible target!")
+                    time.sleep(2)
+                    print("The way up to the spaceship is safe. I can find somewhere to hide there.")
+                    time.sleep(3.5)
+                    print("Should I go for the spaceship, or maybe target the rest of the travellers?")
+                    time.sleep(4)
+                    print()
+                    print("Go for the spaceship!    [1]")
+                    print("Take out the travellers. [2]")
+                    print()
+
+                    answer2 = ""
+                    while answer2 not in answers:
+                        answer2 = input("Enter here:  ")
+                    else:
+                        if answer2 == answers[0] or answers[1]:
+                            print(". .")
+                            time.sleep(1)
+                            print(". .")
+                            time.sleep(1)
+                            print('''Never mind, I uhh, I almost got spotted so I, I rushed to the spaceship 
+and now im currently in a cabinet of some sorts.''')
+                            time.sleep(4)
+                            print("I'm fairly certain I wasn't seen, so I should be safe here for now.")
+                            time.sleep(3)
+                            print("Once we take off, I should be clear to investigate the spaceship.")
+                            time.sleep(2)
+                            print("But for now we wait.")
+                            spaceship()
+
+                if answer1 == answers[1]:
+                    print("--> Find a different approach")
+                    print()
+                    time.sleep(1)
+                    print("Ok, I think I found another way around this.")
+                    time.sleep(2)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print("Im back! I'm inside a cargo box.")
+                    time.sleep(2)
+                    print("But it's full of explosives!")
+                    time.sleep(2)
+                    print("As long as I don't blow up I should be good.")
+                    time.sleep(3)
+                    print("All I need is to be placed in the spaceship and everything should be find from there.")
+                    time.sleep(3)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print(". . .")
+                    time.sleep(1)
+                    print("Im in! It worked. I had to stay quiet there, I couldn't compromise myself.")
+                    time.sleep(3)
+                    print("Now I just have to wait or take off and I break out of here.")
+                    time.sleep(3)
+                    spaceship()
 
 
 def mineshaft():
@@ -1317,7 +1307,8 @@ def mineshaft():
             global inventory
             print("'Picked up 4 light sticks'")
             print("'Picked up 3 explosives'")
-            inventory = {"Light Sticks": 4, "Explosives": 3}
+            inventory["Light Sticks"] = 4
+            inventory["Explosives"] = 3
             time.sleep(2)
 
             print()
@@ -1327,7 +1318,9 @@ def mineshaft():
             time.sleep(1)
             print("Damn, this place is like a maze.")
             time.sleep(1)
-            print("I have to find this cart or way out because I am definitely getting stuck here otherwise")
+            print("I have to find a mine cart or a way out because I am definitely getting stuck here otherwise.")
+            time.sleep(3)
+            print(". . .")
             time.sleep(2)
             print("Hey so, are there any other creatures lurking in here from your knowledge or am I, safe.")
             time.sleep(2)
@@ -1341,15 +1334,15 @@ def mineshaft():
             while answer1 not in answers1:
                 answer1 = input("Enter here:  ")
             else:
-                if answer1 == answers[0] or answers[1]:
+                if answer1 == answers1[0] or answers1[1]:
                     print()
                     print("Okay... I don't know what to think about that, I'll just keep moving forward.")
                     time.sleep(2)
                     print("I found what looks like cart tracks.")
                     time.sleep(2)
                     clickers()
-                if answer1 == answers[2]:
-                    print("Well, if want to know, Kepler 11 was the best suitable candidate for a second Earth.")
+                if answer1 == answers1[2]:
+                    print("Well, if you want to know, Kepler 11 was the best suitable candidate for a second Earth.")
                     time.sleep(3)
                     print('''I was sent here with my team, which was recently captured, 
 to gather intel of unauthorised activity by other travellers.''')
@@ -1359,7 +1352,7 @@ to gather intel of unauthorised activity by other travellers.''')
                     print("I need another light stick I cant see anything.")
                     time.sleep(2)
                     print("'Removed 1 light stick from inventory'")
-                    inventory = {"Light Sticks": 3}
+                    inventory["Light Sticks"] = 3
                     time.sleep(2)
                     print()
                     print(inventory)
@@ -1376,24 +1369,20 @@ to gather intel of unauthorised activity by other travellers.''')
     return
 
 
-def mineshaft_hurt():
-    print()
-
-
 def clickers():
     answers = ["1", "2", "3"]
     answer = ""
 
     print("ohh, ohhh my what is that!!!")
-    time.sleep(1)
+    time.sleep(2)
     print("It's coming after me!")
     time.sleep(2)
     print("Ahhh! Die you filthy clicking abomination!!")
-    time.sleep(2)
+    time.sleep(3)
     print(". . .")
     time.sleep(2)
     print("Ummm. I think I killed it!", usr_name, "What the hell was that thing!")
-    time.sleep(2)
+    time.sleep(3)
 
     print()
     print("A Trikofungus? really? I have only read about them but we never had proof.[1]")
@@ -1444,6 +1433,26 @@ def cart():
             print()
             time.sleep(1)
             print("There's no time, this place is like a maze!")
+            time.sleep(2)
+            print("I would never make it out")
+            time.sleep(1)
+            print("I have to try though! Ahh! What do I do?")
+            time.sleep(2)
+            print("Im making a run back to the cabin.")
+            time.sleep(2)
+            print("Ohh! These things are fast!")
+            time.sleep(2)
+            print("Nooo!! Ahhh!")
+            time.sleep(1)
+            print("Get")
+            time.sleep(1)
+            print("Off Me!")
+            time.sleep(1)
+            print("Ahhhh!! ")
+            time.sleep(1)
+            death()
+            cart()
+
         if answer1 == answers1[1]:
             print("--> Trikofungi are like bats, they're blind so don't make a sound.")
             print()
@@ -1524,7 +1533,7 @@ def cart():
                     print("Nice! It could have been a lot worse, but I'm alive still, that's what counts.")
                     time.sleep(3)
                     print()
-                    print("So you think this leads to the facility?")
+                    print("So you think I will make it to the facility with this?")
                     print()
                     time.sleep(2)
                     print("Are you even going North?                                                [1]")
@@ -1535,7 +1544,7 @@ def cart():
                     while answer3 not in answers1:
                         answer3 = input("Enter here:  ")
                     else:
-                        if answer3 == answers1:
+                        if answer3 in answers1:
                             print()
                             print("Well, I think I'm going North.")
                             time.sleep(2)
@@ -1549,7 +1558,7 @@ def cart():
                     random_event()
                     print()
 
-                    print("Pheww! Thank god for you huh! I don't think I would have made it until here without you")
+                    print("Pheww! Thank god for you huh! I don't think I would have made it this far without you")
                     time.sleep(3)
                     print("We still have far to go, I think. We will never know until we get out of here I guess.")
                     time.sleep(3)
@@ -1642,7 +1651,23 @@ def random_event():
                 print()
                 print("I agree! No distractions! Lets see where this track takes us!")
                 time.sleep(3)
-                print("I have good news")
+                print("Uhmmm,", usr_name, usr_name.upper(), '''I see an opening far ahead 
+with a bunch of creepy crawling creatures lurking.''')
+                time.sleep(4)
+                print("What do I do? Do I throw an explosive?")
+                time.sleep(2)
+                print("Sounds about right, I wont bother you for this one, I'll try take care of them.")
+                time.sleep(4)
+                print("Aaand BOOM!")
+                time.sleep(1)
+                print("WOOO! That should do it! There is no way anything survives that!")
+                time.sleep(3)
+                print("Ohh one made it on the cart alive!")
+                time.sleep(2)
+                print("Ahhh! Die you creepy crawly!")
+                choices = (x for x in choices if x != 2)
+                return choices
+
             if answer2 == answers[1]:
                 print()
                 print("--> Could be a way out of the mines. Blow up the debris!")
@@ -1651,6 +1676,11 @@ def random_event():
                 time.sleep(3)
                 print("Placing explosives.")
                 time.sleep(1)
+                inventory["Explosives"] -= 1
+                print("Removed 1 Explosive from Inventory")
+                print()
+                print(inventory)
+                print()
                 print("I feel like this is going to attract a lot of them clickers")
                 time.sleep(2)
                 print("So I have to be quick")
@@ -1723,6 +1753,11 @@ def random_event():
                                 time.sleep(1)
                                 print("Clever right? Ok lighting the explosive then.")
                                 time.sleep(2)
+                                inventory["Explosives"] -= 1
+                                print("Removed 1 Explosive from Inventory")
+                                print()
+                                print(inventory)
+                                print()
                                 print("I threw it right in the middle of them, now I run!")
                                 time.sleep(2)
                                 print("Wooo! That should do it! There is no way anything survives that!")
@@ -1928,24 +1963,560 @@ def random_event():
                         return choices
 
 
-def mineshaft_exit():
+def spaceship():
+    time.sleep(2)
+    print("Oh! Engines have started.")
+    time.sleep(2)
+    print("It's time! Once we are up in the air, I can change hiding spot.")
+    time.sleep(3)
     print()
+    print("Stay put!        [1]")
+    print("Search the ship. [2]")
+    print()
+
+    answer = ""
+    answers = ["1", "2"]
+    while answer not in answers:
+        answer = input("Enter here:  ")
+    else:
+        if answer == answers[0]:
+            print()
+            print("--> Stay put!")
+            time.sleep(1)
+            print("You sure?")
+            time.sleep(2)
+            print("I guess, I have to wait until we land so I might as well get comfortable here.")
+            time.sleep(3)
+            print(". . .")
+            time.sleep(1)
+            print("Someone just entered the cargo room!")
+            time.sleep(2)
+            print(". . .")
+            time.sleep(1)
+            print("He's close!")
+            time.sleep(1)
+            print("Oh no! I think he- ")
+            time.sleep(2)
+            print("Get OFF OF ME! Ahh!! ")
+            time.sleep(2)
+            print(".")
+            death("DEATH -> SHOT BY TRAVELLER")
+            spaceship()
+        if answer == answers[1]:
+            print()
+            print("--> Search the ship.")
+            time.sleep(1)
+            print("Exactly my plan!")
+            time.sleep(1)
+            print("Ok, I'm currently at the cargo area and there's no one here that I see.")
+            time.sleep(2)
+            print("I can see people circling the hallways. If I want to search the ship I will have to blend in!")
+            time.sleep(3)
+            print("Doors seem to require a key card to open!")
+            print()
+            time.sleep(2)
+
+            if "Key card" in inventory:
+                print("Im glad I picked this up from the traveller outside.")
+                time.sleep(2)
+                print()
+                print("Used Key card")
+                print()
+                time.sleep(1)
+                print("It worked!")
+                time.sleep(1)
+                print("Ok, okay, umm, I see a total of 2 guards, do I sneak passed them or take them out?")
+                time.sleep(3)
+
+                print()
+                print("Sneak to another room.    [1]")
+                print("Shoot them!               [2]")
+                print()
+                answer1 = ""
+
+                while answer1 not in answers:
+                    answer1 = input("Enter here:  ")
+                else:
+                    if answer1 == answers[0]:
+                        print()
+                        print("--> Sneak to another room.")
+                        print()
+                        time.sleep(1)
+                        print("Good call, I'm not sure I want to alert myself yet.")
+                        time.sleep(2)
+                        print("On my way.")
+                        time.sleep(1)
+                        print(". . .")
+                        time.sleep(1)
+                        print(". . .")
+                        time.sleep(1)
+                        print("Used Key card")
+                        time.sleep(1)
+                        print('''I'm in! I found an outfit which should hopefully,
+give me enough time for a disguise in order to escape when I get to the facility.''')
+                        time.sleep(4)
+                        print("I should head back to the cargo room now and hide until we arrive, right?")
+                        time.sleep(3)
+                        print("I have everything I need to escape, I just need to land safely now.")
+                        facility()
+                    if answer1 == answers[1]:
+                        print()
+                        print("--> Shoot them! ")
+                        print()
+                        time.sleep(1)
+                        print("Well then, I guess we are taking over the spaceship!")
+                        time.sleep(1)
+                        print("Used Ray Gun")
+                        time.sleep(1)
+                        print(". . .")
+                        time.sleep(1)
+                        print("Two down. I hear more coming! This gun is really loud!")
+                        print()
+                        inventory["Ray Gun"] = 1
+                        print(inventory)
+                        time.sleep(2)
+                        print()
+                        answer2 = ""
+                        print("Run back to the cargo area!  [1]")
+                        print("Hide.                        [2]")
+                        print()
+
+                        while answer2 not in answers:
+                            answer2 = input("Enter here:  ")
+                        else:
+                            if answer2 == answers[0]:
+                                print()
+                                print("--> Run back to the cargo area!")
+                                print()
+                                time.sleep(1)
+                                print("Way ahead of you buddy im already here!")
+                                time.sleep(2)
+                                print("They will find me here I should think of something!")
+                                time.sleep(3)
+                                print("I'm not sure I can make it out of this one my friend")
+                                time.sleep(3)
+                                print("It was a hell of an adventure!")
+                                time.sleep(2)
+
+                                print()
+                                print("What? So you're quitting now? At the end?    [1]")
+                                print("Hide.                                        [2]")
+                                print()
+
+                                answer3 = ""
+                                while answer3 not in answers:
+                                    answer3 = input("Enter here:  ")
+                                else:
+                                    if answer3 == answers[0] or answers[1]:
+                                        ending_1()
+
+                            if answer2 == answers[1]:
+                                print()
+                                print("--> Hide")
+                                print()
+                                time.sleep(1)
+                                print("Way ahead of you buddy!")
+                                time.sleep(1)
+                                print("I'm back in the prev-")
+                                time.sleep(1)
+                                print("Oh no-")
+                                time.sleep(1)
+                                print("No No! Let me go!")
+                                time.sleep(1)
+                                print("AHH!")
+                                time.sleep(1)
+                                print("What are you going to do to me?")
+                                time.sleep(1)
+                                print("l-Larry?")
+                                time.sleep(1)
+                                print("I thought you were captured wh- what is going on here?")
+                                time.sleep(1)
+                                print("You work for these guys? What happened to OUR team and OUR orders?")
+                                time.sleep(1)
+                                print("TALK GOD DAMMIT! WHY WON'T YOU SAY SOMETHING!")
+                                time.sleep(1)
+                                print("WHAT DID YOU- -")
+                                death("DEATH -> SHOT BY LARRY")
+                                spaceship()
+
+            else:
+                print("If I could only get my hands on a key card!")
+                time.sleep(2)
+                print("For now I guess I have to wait here.")
+                time.sleep(2)
+                print("Oh no! Someone's coming in the cargo room")
+                time.sleep(2)
+
+                print()
+                print("Hide!            [1]")
+                print("Take him out!    [2]")
+                print()
+                answer1 = ""
+
+                while answer1 not in answers:
+                    answer1 = input("Enter here:  ")
+                else:
+                    if answer1 == answers[0]:
+                        print()
+                        time.sleep(1)
+                        print("--> Hide")
+                        time.sleep(1)
+                        print("On it!")
+                        time.sleep(1)
+                        print(". . .")
+                        time.sleep(1)
+                        print("He's coming close, I think I may have a chance to take him out!")
+                        time.sleep(3)
+                        print(". . .")
+                        time.sleep(2)
+                        print(". . .")
+                        time.sleep(2)
+                        print("ah! ahhh! come on!! .. don't, fight, it!")
+                        time.sleep(2)
+                        print("WOO! Got him! okay!")
+                        time.sleep(1)
+                        print("Yes! we got the key card, and I found a ray gun as well.")
+                        time.sleep(3)
+                        inventory["Key card"] = '1'
+                        inventory["Ray Gun"] = '3'
+                        print()
+                        print(inventory)
+                        print()
+                        time.sleep(2)
+                        print("Off to search the spaceship then. I will let you know what I see.")
+                        time.sleep(2)
+                        print()
+                        print("Used Key card")
+                        print()
+                        time.sleep(1)
+                        print("It worked!")
+                        time.sleep(1)
+                        print("Ok, okay, umm, I see a total of 2 guards, do I sneak passed them or take them out?")
+                        time.sleep(3)
+
+                        print()
+                        print("Sneak to another room.    [1]")
+                        print("Shoot them!               [2]")
+                        print()
+                        answer2 = ""
+
+                        while answer2 not in answers:
+                            answer2 = input("Enter here:  ")
+                        else:
+                            if answer2 == answers[0]:
+                                print()
+                                print("--> Sneak to another room.")
+                                print()
+                                time.sleep(1)
+                                print("Good call, I'm not sure I want to alert myself yet.")
+                                time.sleep(2)
+                                print("On my way.")
+                                time.sleep(1)
+                                print(". . .")
+                                time.sleep(1)
+                                print(". . .")
+                                time.sleep(1)
+                                print("Used Key card")
+                                time.sleep(1)
+                                print('''I'm in! I found an outfit which should hopefully,
+give me enough time for a disguise in order to escape when I get to the facility.''')
+                                time.sleep(4)
+                                print("I should head back to the cargo room now and hide until we arrive, right?")
+                                time.sleep(3)
+                                print('''I have everything I need to escape, I just need to get back to hiding 
+and wait to land safely.''')
+                                time.sleep(3)
+                                print(". . .")
+                                time.sleep(1)
+                                print(". . .")
+                                time.sleep(1)
+                                print("I'm back in hiding")
+                                facility()
+                            if answer2 == answers[1]:
+                                print()
+                                print("--> Shoot them! ")
+                                print()
+                                time.sleep(1)
+                                print("Well then, I guess we are taking over the spaceship!")
+                                time.sleep(1)
+                                print("Used Ray Gun")
+                                time.sleep(1)
+                                print(". . .")
+                                time.sleep(1)
+                                print("Two down. I hear more coming! This gun is really loud!")
+                                print()
+                                inventory["Ray Gun"] = 1
+                                print(inventory)
+                                time.sleep(2)
+                                print()
+
+                                answer3 = ""
+
+                                print("Run back to the cargo area!  [1]")
+                                print("Hide.                        [2]")
+                                print()
+
+                                while answer3 not in answers:
+                                    answer3 = input("Enter here:  ")
+                                else:
+                                    if answer3 == answers[0]:
+                                        print()
+                                        print("--> Run back to the cargo area!")
+                                        print()
+                                        time.sleep(1)
+                                        print("Way ahead of you buddy im already here!")
+                                        time.sleep(2)
+                                        print("They will find me here I should think of something!")
+                                        time.sleep(3)
+                                        print("I'm not sure I can make it out of this one my friend")
+                                        time.sleep(3)
+                                        print("It was a hell of an adventure!")
+                                        time.sleep(2)
+
+                                        print()
+                                        print("What? So you're quitting now? At the end?    [1]")
+                                        print("Hide.                                        [2]")
+                                        print()
+
+                                        answer4 = ""
+                                        while answer4 not in answers:
+                                            answer4 = input("Enter here:  ")
+                                        else:
+                                            if answer4 == answers[0] or answers[1]:
+                                                ending_1()
+
+                    if answer1 == answers[1]:
+                        print()
+                        time.sleep(1)
+                        print("--> Take him out")
+                        time.sleep(1)
+                        print("Yeah I have to don't I.")
+                        time.sleep(1)
+                        print("Here he comes.")
+                        time.sleep(1)
+                        print(". . .")
+                        time.sleep(1)
+                        print(". . .")
+                        time.sleep(1)
+                        print("Ahh!")
+                        time.sleep(1)
+                        print(". . .")
+                        time.sleep(1)
+                        print("No! No! AHH!")
+                        death("DEATH -> CHOKED TO DEATH")
+                        spaceship()
+
+
+def mineshaft_exit():
+    print(usr_name, usr_name, "Hey, are you there? I have good news I think.")
+    time.sleep(3)
+    print("I fell asleep on the cart but it seems like we made it to the end!")
+    time.sleep(3)
+    print("Time to get out of here and out of this planet!")
+    time.sleep(2)
+    print("I see the exit!")
+    time.sleep(1)
+    print("It's the same trapdoor as in the cabin!")
+    time.sleep(2)
+    print("I don't remember the key code, I must have lost the piece of paper along the way!")
+    time.sleep(3)
+    print("5  4  5  2  5  7")
+    time.sleep(2)
+    print("Wrong!")
+    time.sleep(1)
+    print("Umm 5 7 4 2 5 8")
+    time.sleep(1)
+    print("Wrong again!")
+    time.sleep(1)
+    print("Ahh! Dammit I don't remember! My brain can't function right now.")
+    time.sleep(2)
+    print("You must remember right? You have to!")
+    time.sleep(2)
+
+    time.sleep(1.5)
+    answer = ""
+    while answer != password_answer:
+        print()
+        print(password)
+        print()
+
+        answer = input("Type Password: ").split()
+    else:
+        if answer == password_answer:
+            print("Correct! The trapdoor opened!")
+            time.sleep(1)
+            print("Ha HAA! You remembered!")
+            time.sleep(1)
+            print("Thank god!")
+            time.sleep(1)
+            print("Now lets see where we are!")
+            facility()
 
 
 def facility():
     print()
+    time.sleep(2)
+    print("I, I made it!")
+    time.sleep(1)
+    print("We Made it!!")
+    time.sleep(1)
+    print("I think I can take it from here partner!")
+    time.sleep(2)
+    print("We made it to the extraction point with 2 days to spare! ")
+    time.sleep(3)
+    print("I'll let you get back to your work then! Thank you for being part of this awesome but terrifying adventure")
+    time.sleep(4)
+    print()
+    print()
+    print("[GAME OVER]")
+    print("[REACHED ENDING 'C']")
 
 
-def death():
+def ending_1():
+    print()
+    print("No! No more waiting around, or quitting, or hiding!")
+    print('''There are enough explosives to blow up this spaceship 
+    and everyone in it''')
+    time.sleep(5)
+    print("Including me!")
+    time.sleep(2)
+    print('''I will stop those travellers 
+    from causing any more damage to this planet''')
+    time.sleep(4)
+    print("Even if its the last thing I do!")
+    time.sleep(3)
+    print("I hope you agree because I've set up the explosives while talking.")
+    time.sleep(3)
+    print("Here they come!")
+    time.sleep(1)
+    print(". . .")
+    time.sleep(1)
+    print(". . .")
+    time.sleep(1.5)
+    print(". . .")
+    time.sleep(2)
+    print("l- Lary?")
+    time.sleep(1)
+    print("Tonya, Michael, wh-what is going on?")
+    time.sleep(3)
+    print("I thought you guys were captured wh- what is going on here?")
+    time.sleep(3)
+    print("I was coming back to rescue you and bring you home.")
+    time.sleep(3)
+    print("You work for these guys? What happened to OUR team and OUR orders?")
+    time.sleep(3)
+    print()
+    print("Michael: JOE! put, the detonator down, and we will explain everything.")
+    time.sleep(4)
+    print()
+    print('''Joe: You don't make the rules now, I
+    will blow up this ship If you don't start talking, NOW''')
+    time.sleep(5)
+    print()
+    print("Larry: Okay, Joe, calm down, you don't won't to do this.")
+    time.sleep(3)
+    print("Let me explain.")
+    time.sleep(1)
+    print('''3 years ago, 
+    we came to this planet to test the potential of a second Earth''')
+    time.sleep(4)
+    print("Remember that?")
+    time.sleep(1)
+    print('''Well turns out, this planet was discovered before we were here. 
+    These people have been trying to eradicate infestations of creatures and infected that make this planet, 
+    well, dangerous really.''')
+    time.sleep(7)
+    print('''Joe! These people are from an alternate Earth!
+    That's why our mission was to investigate anomalies with Kepler 11, because travellers from our Earth had never been 
+    authorised to work here!''')
+    time.sleep(8)
+    print()
+    print('''Tanya: It's true Joe! You have to believe us! 
+    we never wanted to put you in this situation''')
+    time.sleep(4)
+    print()
+    print("Joe: But, you guys were captured supposedly.")
+    time.sleep(3)
+    print("Why didn't you make contact with me?")
+    time.sleep(2)
+    print()
+    print("Larry: We thought you were dead! We thought this planet took you!")
+    time.sleep(3)
+    print("Now come on Joe! Put the detonator down and lets have the team back! New and Improved!")
+    time.sleep(3)
+    print()
+    print("Joe: I don't know what to say now Larry.")
+    time.sleep(2)
+    print(usr_name, '''Hey you still here partner? 
+    Im not making this decision without you! You've helped more than anyone these few days,
+     so I am happy to leave this on you''')
+    time.sleep(6)
+    print("What do you think I should do?")
+    print()
+    print("Join the other Travellers.   [1]")
+    print("Blow up the plane.           [2]")
+    print()
+
+    answer = ""
+    answers = ["1", "2"]
+    while answer not in answers:
+        answer = input("Enter decision:  ")
+    else:
+        if answer == answers[0]:
+            print()
+            print("--> Join the other Travellers.")
+            print("--> It was an honour to be in this adventure with you Joe! Now go be with you team!")
+            print()
+            time.sleep(2)
+            print("*Puts detonator down*")
+            time.sleep(1)
+            print("Joe: It's good to see you guys!")
+            print()
+            print("Michael: It's good to have you back buddy!")
+            time.sleep(3)
+            print("We have a lot to tell you man!")
+            time.sleep(1.5)
+            print(". . .")
+            time.sleep(2)
+            print(". . .")
+            time.sleep(2)
+            print("[GAME OVER]")
+            print("[REACHED ENDING 'A']")
+        if answer == answers[1]:
+            print()
+            print("--> Blow up the plane")
+            print("--> It was an honour to be in this adventure with you Joe! I will remember you!")
+            print()
+            time.sleep(2)
+            print("Damn, intern, we've got the same ideas after all!")
+            time.sleep(3)
+            print("Goodbye my friend.")
+            time.sleep(2)
+            print("As for you guys.")
+            time.sleep(1)
+            print("I lost my team three years ago Larry. Nothing is bringing them back. ")
+            time.sleep(3)
+            print(". . .")
+            time.sleep(1)
+            print(". . .")
+            time.sleep(2)
+            print("[GAME OVER]")
+            print("[REACHED ENDING 'B']")
+            death("DEATH -> BOMB EXPLOSION")
+            return
+
+
+def death(reason):
     print()
     print("[Connection Signal Lost]")
     time.sleep(1)
     print("[Traveller 017 is now offline]")
     print()
+    print(reason)
     print("[CONSOLE RESTARTING]")
     time.sleep(3)
     print()
     print()
 
 
-random_event()
+spaceship()

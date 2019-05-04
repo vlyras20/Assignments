@@ -1,50 +1,58 @@
 import math, random, sys
 import pygame
 from pygame.locals import *
+from gameSettings import *
+from gameSprites import *
 
-# exit the program
-def events():
-	for event in pygame.event.get():
-		if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-			pygame.quit()
-			sys.exit()
+class Game:
+	def __init__(self):
+		pygame.init()
+		self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+		pygame.display.set_caption(TITLE)
+		self.clock = pg.time.Clock()
+		pygame.key.set_repeat(500, 100)
 
-# define display surface
-W, H = 1280, 640
-HW, HH = W / 2, H / 2
-AREA = W * H
+    # game loop - set self.playing = False to end the game
+    def run(self):
+        self.playing = True
+        while self.playing:
+            self.dt = self.clock.tick(FPS) / 1000
+            self.events()
+            self.update()
+            self.draw()
 
-# initialise display
-pygame.init()
-CLOCK = pygame.time.Clock()
-DS = pygame.display.set_mode((W, H))
-pygame.display.set_caption("code.Pylet - Scrolling Background with Player")
-FPS = 500
+    def draw(self):
+        self.screen.fill(BGCOLOR)
+        self.draw_grid()
+        self.all_sprites.draw(self.screen)
+        pg.display.flip()
 
-# define some colors
-BLACK = (0, 0, 0, 255)
-WHITE = (255, 255, 255, 255)
+    # update portion of the game loop
+    def update(self):
+        self.all_sprites.update()
 
-bg = pygame.image.load("backg.jpg")
-bgWidth, bgHeight = bg.get_rect().size
+	# exit the program
+	def events():
+		for event in pygame.event.get():
+			if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
 
-stageWidth = bgWidth * 2
-stagePosX = 0
+    def titleScreen(self):
+        pass
 
-startScrollingPosX = HW
-
-circleRadius = 25
-circlePosX = circleRadius
-
-playerPosX = circleRadius
-playerPosY = 550
-playerVelocityX = 0
+g = Game()
+g.titleScreen()
 
 # main loop
 while True:
-	events()
+	g.run()
 
 	key = pygame.key.get_pressed()
+	if key[K_UP]:
+		playerPosY -= 5
+	if key[K_DOWN]:
+		playerPosY += 5
 	if key[K_RIGHT]:
 		playerVelocityX = 5
 	elif key[K_LEFT]:
@@ -53,10 +61,14 @@ while True:
 		playerVelocityX = 0
 
 	playerPosX += playerVelocityX
-	if playerPosX > stageWidth - circleRadius: playerPosX = stageWidth - circleRadius
-	if playerPosX < circleRadius: playerPosX = circleRadius
-	if playerPosX < startScrollingPosX: circlePosX = playerPosX
-	elif playerPosX > stageWidth - startScrollingPosX: circlePosX = playerPosX - stageWidth + W
+	if playerPosX > stageWidth - circleRadius:
+		playerPosX = stageWidth - circleRadius
+	if playerPosX < circleRadius:
+		playerPosX = circleRadius
+	if playerPosX < startScrollingPosX:
+		circlePosX = playerPosX
+	elif playerPosX > stageWidth - startScrollingPosX:
+		circlePosX = playerPosX - stageWidth + W
 	else:
 		circlePosX = startScrollingPosX
 		stagePosX += -playerVelocityX

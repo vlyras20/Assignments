@@ -1,3 +1,4 @@
+
 # define some colors (R, G, B)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -15,11 +16,6 @@ FPS = 60
 TITLE = "TonyTone"
 BGCOLOR = DARKGREY
 
-stagePosX = 0
-startScrollingPosX = WIDTH/2
+bgx = 0
 
-circleRadius = 30
-circlePosX = circleRadius
-
-playerPosX = circleRadius
-playerVelocityX = 0
+FONT_NAME = 'arial'

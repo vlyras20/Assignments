@@ -19,6 +19,8 @@ BGCOLOR = SEA
 bgx = 0
 bgx2 = 480
 bgy = 605
+bgy2 = 405
+bgy3 = 0
 
 islandx = 0
 islandy = 400
@@ -26,8 +28,10 @@ islandy = 400
 timer = 0
 t = -1
 SCORE = 0
+seconds = 0
 meteorDMG = 25
 playerHealth = 150
+startTime = None
 
 waiting = True
 FishingActive = False

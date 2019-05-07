@@ -66,11 +66,11 @@ class Fish(pygame.sprite.Sprite):
         if self.pos.x < 0:
             self.pos.x = 960
             self.flip = 0
-            self.pos.y = random.randint(550, 595)
+            self.pos.y = random.randint(430, 585)
         elif self.pos.x > 960:
             self.pos.x = 0
             self.flip = 1
-            self.pos.y = random.randint(550, 595)
+            self.pos.y = random.randint(430, 585)
             self.vel = pygame.math.Vector2(random.randint(1, 3), 0)
 
         keys = pygame.key.get_pressed()
@@ -92,6 +92,7 @@ class Meteors(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(WIDTH - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
+        self.size = self.image.get_size()
         self.speedY = random.randrange(1, 7)
         self.speedX = random.randrange(-2, 2)
 

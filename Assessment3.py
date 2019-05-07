@@ -4,7 +4,12 @@ from gameSettings import *
 from gameSprites import *
 
 pygame.init()
+clock = pygame.time.Clock()
+
+menubg = pygame.image.load('Images/menu.jpg')
 seabg = pygame.image.load('Images/sea.png')
+mountainbg = pygame.image.load('Images/backg.png')
+mountainbg2 = pygame.image.load('Images/backg2.png')
 island = pygame.image.load('Images/trees.png')
 rod = pygame.image.load('Images/rod.png')
 sharkfin = pygame.image.load('Images/sharkfin.png')
@@ -47,11 +52,11 @@ class Game:
 		self.fish_sprites = pygame.sprite.Group()
 		self.meteors = pygame.sprite.Group()
 		self.player = Player()
-		self.fish1 = Fish(fish1, 0, 577, 0, 1)
-		self.fish2 = Fish(fish2, 960, 554, 0, 0)
-		self.fish3 = Fish(fish3, 500, 550, 0, 1)
-		self.fish4 = Fish(fish4, 700, 568, 0, 0)
-		self.fish5 = Fish(fish5, 50, 500, 0, 1)
+		self.fish1 = Fish(fish1, 0, 500, 0, 1)
+		self.fish2 = Fish(fish2, 960, 450, 0, 0)
+		self.fish3 = Fish(fish3, 500, 521, 0, 1)
+		self.fish4 = Fish(fish4, 700, 520, 0, 0)
+		self.fish5 = Fish(fish5, 50, 470, 0, 1)
 		self.fish6 = Fish(fish5, 900, 530, 0, 0)
 		self.sharkfin = SharkFin(sharkfin, 960, self.player.pos.y, 0)
 		self.rod = Rod(rod, self.player.pos.x, self.player.pos.y)
@@ -62,6 +67,7 @@ class Game:
 		self.fish_sprites.add(self.fish3)
 		self.fish_sprites.add(self.fish4)
 		self.fish_sprites.add(self.fish5)
+		self.fish_sprites.add(self.fish6)
 		self.run()
 
     # game loop
@@ -82,6 +88,7 @@ class Game:
 	def update(self):
 		self.all_sprites.update()
 		global bgy
+		global bgy3
 		global islandx
 		global waiting
 		global spawnMeteors
@@ -94,13 +101,18 @@ class Game:
 		if waiting == False:
 			self.player.pos.y -= 1
 			bgy -= 1
+			bgy3 -= 1
+			for i in range(seconds):
+				self.text(str(seconds - i), 136, WHITE, (WIDTH/2), (HEIGHT/5))
+				time.sleep(1)
+				pygame.display.flip()
 
-		if self.player.pos.y  <= HEIGHT * 3 / 4:
-			self.player.pos.y = HEIGHT * 3 / 4
+		if self.player.pos.y  <= HEIGHT * 2 / 3:
+			self.player.pos.y = HEIGHT * 2 / 3
 			fishspawn = True
 
-		if bgy <= HEIGHT * 3 / 4:
-			bgy = HEIGHT * 3 / 4
+		if bgy <= HEIGHT * 2 / 3:
+			bgy = HEIGHT * 2 / 3
 
 		if fishspawn == True:
 			self.all_sprites.add(self.sharkfin)
@@ -146,8 +158,13 @@ class Game:
 
 	def draw(self):
 		self.screen.fill(SEA)
+		# self.screen.blit(mountainbg2,(0, 0))
 		self.screen.blit(seabg,(bgx, bgy))
 		self.screen.blit(seabg,(bgx2, bgy))
+		self.screen.blit(mountainbg,(bgx, bgy2))
+		self.screen.blit(mountainbg,(bgx2, bgy2))
+
+
 		# self.text('Score: ' + SCORE, 48, WHITE, WIDTH / 2, HEIGHT / 4)
 		# self.screen.blit(island,(islandx, islandy))
 		self.all_sprites.draw(self.screen)
@@ -156,10 +173,11 @@ class Game:
 
 	def titleScreen(self):
 		self.screen.fill(BGCOLOR)
-		self.text(TITLE, 136, WHITE, (WIDTH/2), (HEIGHT/4))
-		self.text('Use [A] and [D] to move', 100, WHITE, WIDTH / 2, HEIGHT / 2)
-		self.text('Use [S] to fish', 100, WHITE, WIDTH / 2, HEIGHT / 1.4)
-		self.text('Press any key to start', 30, WHITE, WIDTH / 2, HEIGHT / 2.5)
+		self.screen.blit(menubg,(0, 0))
+		# self.text(TITLE, 136, WHITE, (WIDTH/2), (HEIGHT/4))
+		# self.text('Use [A] and [D] to move', 100, WHITE, WIDTH / 2, HEIGHT / 2)
+		# self.text('Use [S] to fish', 100, WHITE, WIDTH / 2, HEIGHT / 1.4)
+		# self.text('Press any key to start', 30, WHITE, WIDTH / 2, HEIGHT / 2.5)
 		pygame.display.flip()
 		self.waitforTitle()
 

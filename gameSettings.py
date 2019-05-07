@@ -10,12 +10,30 @@ YELLOW = (255, 255, 0)
 SEA = (35, 161, 193)
 
 # game settings
-WIDTH = 480   # 16 * 64 or 32 * 32 or 64 * 16
+WIDTH = 960   # 16 * 64 or 32 * 32 or 64 * 16
 HEIGHT = 600  # 16 * 48 or 32 * 24 or 64 * 12
 FPS = 60
 TITLE = "TonyTone"
 BGCOLOR = DARKGREY
 
 bgx = 0
+bgx2 = 480
+bgy = 505
+
+islandx = 0
+islandy = 290
+
+SCORE = 0
+waiting = True
+FishingActive = False
+spawnMeteors = False
 
 FONT_NAME = 'arial'
+
+obstacles = []
+
+fish1 = 'Images/fish1.png'
+fish2 = 'Images/fish2.png'
+fish3 = 'Images/fish3.png'
+fish4 = 'Images/fish4.png'
+fish5 = 'Images/fish5.png'
